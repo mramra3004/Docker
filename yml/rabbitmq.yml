@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: rabbitmq
+        environment:
+            RABBITMQ_DEFAULT_PASS: P4ssW0rd!
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_ERLANG_COOKIE: P4ssW0rd!
+        networks:
+            - network
+        ports:
+            - 5672:5672
+            - 15672:15672
+        volumes:
+            - rabbitmq-etc:/etc/rabbitmq
+            - rabbitmq-data:/var/lib/rabbitmq
+            - rabbitmq-logs:/var/log/rabbitmq
+networks:
+    network:
+volumes:
+    rabbitmq-etc:
+        driver: local
+    rabbitmq-data:
+        driver: local
+    rabbitmq-logs:
+        driver: local

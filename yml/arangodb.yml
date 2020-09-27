@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+    arangodb:
+        image: arangodb
+        container_name: arangodb
+        environment:
+            ARANGO_ROOT_PASSWORD: P4ssW0rd!
+        networks:
+            - network
+        ports:
+            - 8529:8529
+        volumes:
+            - arangodb:/var/lib/arangodb3
+            - arangodb-apps:/var/lib/arangodb3-apps
+networks:
+    network:
+volumes:
+    arangodb:
+        driver: local
+    arangodb-apps:
+        driver: local
